@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  msshop.api:
+    image: ${DOCKER_REGISTRY-}msshopapi
+    build:
+      context: .
+      dockerfile: MsShop.Api/Dockerfile
+    ports:
+    - "8085:80"
+    depends_on:
+    - db
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+            SA_PASSWORD: "Hoannt0509@"
+            MSSQL_PID: "Express"
+            ACCEPT_EULA: "Y"
+    ports:
+    - "1433:1433"
+    
